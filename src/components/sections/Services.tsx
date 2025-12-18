@@ -1,41 +1,45 @@
 "use client";
 
 import * as React from "react";
+"use client";
+
+import * as React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Brain, Heart, Eye } from "lucide-react";
 import { services } from "@/lib/data";
 
 export function Services() {
   return (
-    <section id="services" className="py-32 bg-gradient-to-br from-primary via-[#0f36cb] to-[#0a2590] text-white relative overflow-hidden">
-      {/* Abstract Background Noise / Grain could go here */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay"></div>
-      
-      {/* Floating Orbs */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-500/30 rounded-full blur-[100px] pointer-events-none" />
-
-      <div className="container-custom relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+    <section id="services" className="py-24 bg-[#1344fe] text-white overflow-hidden font-display">
+      <div className="container-custom">
+        {/* Header Section */}
+        <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8">
           <div className="space-y-6 max-w-2xl">
-            <Badge variant="white" className="bg-white/10 text-white border-white/20 backdrop-blur-md shadow-lg">Services</Badge>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display text-white tracking-tight leading-tight">
-              Complete Health <br/> Care Solutions
+            <h2 className="text-5xl md:text-6xl font-bold font-display text-white tracking-tight leading-[1.1]">
+              Complete Health <br/> Care Solutions.
             </h2>
-            <p className="text-blue-100/90 text-lg leading-relaxed max-w-lg">
-              We offer a wide range of specialized medical services ensuring comprehensive care for you and your family with state-of-the-art technology.
+            <p className="text-white/80 text-lg font-light leading-relaxed max-w-lg font-sans">
+              Modern medical services designed around your health, comfort, and recovery. Experience expert care from a team that puts you first.
             </p>
           </div>
-          <Button variant="white-outline" className="h-14 px-8 text-white border-white/30 hover:bg-white hover:text-primary hover:border-white transition-all duration-300 shadow-xl backdrop-blur-sm" withArrow>
-             View All Services
-          </Button>
+          
+          {/* Top Actions */}
+          <div className="flex items-center gap-4">
+             <button className="h-14 px-8 bg-white text-dark font-semibold rounded-xl hover:bg-gray-50 transition-colors shadow-sm text-lg">
+                View All Services
+             </button>
+             <button className="h-14 w-14 bg-white text-dark rounded-xl flex items-center justify-center hover:bg-gray-50 transition-colors shadow-sm">
+                <ArrowUpRight size={24} />
+             </button>
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, idx) => (
+        {/* Services Grid - Horizontal Cards */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {services.slice(0, 4).map((service, idx) => ( // Showing top 4 for better layout match
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 30 }}
@@ -43,26 +47,35 @@ export function Services() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: idx * 0.1, duration: 0.5, ease: "easeOut" }}
             >
-                {/* Premium Glass Card */}
-                <Card className="h-full group bg-white/5 backdrop-blur-lg border border-white/10 p-8 rounded-3xl hover:-translate-y-2 hover:bg-white/10 transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-blue-900/50 relative overflow-hidden">
-                    {/* Inner Glow */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
-                    <div className="relative z-10">
-                        <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-white mb-8 group-hover:scale-110 group-hover:bg-white group-hover:text-primary transition-all duration-300 shadow-inner border border-white/10">
-                            <service.icon size={32} />
+                <div className="h-full bg-white rounded-[32px] overflow-hidden flex flex-row group hover:shadow-2xl transition-all duration-300 min-h-[320px]">
+                    {/* Left: Graphic Area */}
+                    <div className="w-[40%] bg-blue-100/50 relative flex items-center justify-center p-6 group-hover:bg-blue-100 transition-colors">
+                        <div className="w-24 h-24 rounded-full bg-[#1344fe] flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-500">
+                             <service.icon size={42} strokeWidth={1.5} />
                         </div>
-                        <h3 className="text-2xl font-bold font-display text-white mb-4 group-hover:translate-x-1 transition-transform">
-                            {service.title}
-                        </h3>
-                        <p className="text-blue-100/70 mb-8 leading-relaxed">
-                            {service.desc}
-                        </p>
-                        <a href="#" className="inline-flex items-center gap-2 text-sm font-bold text-white uppercase tracking-wider group-hover:gap-4 transition-all opacity-80 group-hover:opacity-100">
-                            Explore More <ArrowRight size={16} />
-                        </a>
                     </div>
-                </Card>
+
+                    {/* Right: Content Area */}
+                    <div className="w-[60%] p-8 flex flex-col justify-between bg-white relative">
+                        <div>
+                            <h3 className="text-2xl font-bold text-dark mb-4">
+                                {service.title}
+                            </h3>
+                            <p className="text-gray-500 font-sans leading-relaxed text-sm lg:text-base">
+                                Discover tailored {service.title.toLowerCase()} services designed for you, ensuring personalized care and effective recovery.
+                            </p>
+                        </div>
+                        
+                        <div className="mt-8 pt-4">
+                            <button className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-gray-200 text-dark font-medium hover:border-[#1344fe] transition-colors group/btn bg-white">
+                                Explore More 
+                                <span className="w-8 h-8 rounded-full bg-[#1344fe] text-white flex items-center justify-center -mr-2 group-hover/btn:scale-110 transition-transform">
+                                    <ArrowUpRight size={16} />
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </motion.div>
           ))}
         </div>
