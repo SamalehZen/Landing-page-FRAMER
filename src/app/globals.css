@@ -3,12 +3,12 @@
 :root {
   --primary-blue: #1344fe;
   --accent-orange: #ff623a;
-  --text-dark: #1b123d;
-  --text-gray: #636977;
-  --bg-light: #f5f6f9;
-  --bg-lavender: #f4f4f4;
-  --bg-dark-blue: #0f36cb; /* slightly darker for gradients/hover */
-  --border-gray: #e7e7e7;
+  --text-dark: #0a0f29; /* Darker, richer navy instead of flat black */
+  --text-gray: #64748b;
+  --bg-light: #f8fafc;
+  --bg-lavender: #f1f5f9;
+  --bg-dark-blue: #0f36cb;
+  --border-gray: #e2e8f0;
   --white: #ffffff;
 }
 
@@ -26,10 +26,8 @@
 
   /* Fonts */
   --font-display: var(--font-poppins);
-  --font-sans: var(--font-inter);
-  --font-alt: var(--font-instrument);
-
-  /* Spacing/Radius can be default or customized if needed */
+  --font-sans: var(--font-instrument); /* Switching body to Instrument for tech/modern feel */
+  --font-alt: var(--font-inter);
 }
 
 /* Custom Utilities */
@@ -37,24 +35,32 @@
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
-/* Animations */
-@keyframes dash {
-  to {
-    stroke-dashoffset: 0;
-  }
+/* Glassmorphism Utilities */
+.glass {
+    @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-xl;
 }
 
-.animate-dash {
-  animation: dash 1.5s ease-out forwards;
+.glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300;
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
 body {
-  @apply bg-white text-dark font-sans;
-  /* Ensuring smooth font rendering */
+  @apply bg-white text-dark font-sans selection:bg-primary/20 selection:text-primary;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-display text-dark;
+  @apply font-display text-dark tracking-tight;
 }
