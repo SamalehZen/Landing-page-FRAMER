@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --primary-blue: #1344fe;
+  --accent-orange: #ff623a;
+  --text-dark: #1b123d;
+  --text-gray: #636977;
+  --bg-light: #f5f6f9;
+  --bg-lavender: #f4f4f4;
+  --bg-dark-blue: #0f36cb; /* slightly darker for gradients/hover */
+  --border-gray: #e7e7e7;
+  --white: #ffffff;
+}
+
+@theme {
+  /* Colors */
+  --color-primary: var(--primary-blue);
+  --color-accent: var(--accent-orange);
+  --color-dark: var(--text-dark);
+  --color-gray-text: var(--text-gray);
+  --color-bg-light: var(--bg-light);
+  --color-bg-lavender: var(--bg-lavender);
+  --color-bg-dark-blue: var(--bg-dark-blue);
+  --color-border-gray: var(--border-gray);
+  --color-white: var(--white);
+
+  /* Fonts */
+  --font-display: var(--font-poppins);
+  --font-sans: var(--font-inter);
+  --font-alt: var(--font-instrument);
+
+  /* Spacing/Radius can be default or customized if needed */
+}
+
+/* Custom Utilities */
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Animations */
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-dash {
+  animation: dash 1.5s ease-out forwards;
+}
+
+body {
+  @apply bg-white text-dark font-sans;
+  /* Ensuring smooth font rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-display text-dark;
+}
