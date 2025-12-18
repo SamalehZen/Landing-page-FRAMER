@@ -7,31 +7,39 @@ import { ArrowUpRight, Facebook } from "lucide-react";
 import Image from "next/image";
 
 function FloatingCell({ className, color }: { className?: string; color: "orange" | "blue" }) {
+  const imageSrc = color === "orange" ? "/images/floating-cell-orange.png" : "/images/floating-cell-blue.png";
+  
   return (
     <motion.div
       animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
       transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       className={className}
     >
-        <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-xl">
-            <circle cx="50" cy="50" r="45" fill={color === "orange" ? "#ff623a" : "#1344fe"} />
-            {/* Simple spikes/texture details */}
-            <circle cx="30" cy="30" r="5" fill="rgba(255,255,255,0.2)" />
-            <circle cx="70" cy="60" r="8" fill="rgba(255,255,255,0.2)" />
-        </svg>
+        <div className="relative w-full h-full drop-shadow-xl">
+             <Image 
+                src={imageSrc} 
+                alt="Floating Cell" 
+                fill 
+                className="object-contain"
+                sizes="(max-width: 768px) 100px, 200px"
+             />
+        </div>
     </motion.div>
   );
 }
 
-function DoctorCard({ name, role, className }: { name: string; role: string; className?: string }) {
+function DoctorCard({ name, role, className, image }: { name: string; role: string; className?: string; image?: string }) {
   return (
     <motion.div 
         whileHover={{ scale: 1.05 }}
         className={`bg-white p-3 rounded-2xl shadow-lg border border-gray-100 flex items-center gap-3 max-w-[240px] ${className}`}
     >
       <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden relative">
-         {/* Placeholder avatar */}
-         <div className="absolute inset-0 bg-primary/10"></div> 
+         {image ? (
+            <Image src={image} alt={name} fill className="object-cover" />
+         ) : (
+            <div className="absolute inset-0 bg-primary/10"></div>
+         )}
       </div>
       <div className="flex-1">
         <h4 className="font-bold text-sm text-dark leading-tight">{name}</h4>
@@ -56,11 +64,10 @@ export function Hero() {
         
         {/* Left Visuals - Desktop */}
         <div className="hidden lg:flex col-span-3 flex-col items-start gap-8 relative h-full justify-center">
-           <DoctorCard name="Dr. Samuel Kim" role="Dermatologist" className="mb-20" />
+           <DoctorCard name="Dr. Samuel Kim" role="Dermatologist" image="/images/dr-samuel-kim.png" className="mb-20" />
            {/* Maybe a large doctor image cutout here if design requires, inferred from 'Grande photo' */}
            <div className="relative w-48 h-64 rounded-t-full rounded-b-3xl overflow-hidden bg-blue-100 mt-auto ml-8 shadow-xl">
-               {/* Placeholder for doctor cutout */}
-                <div className="absolute bottom-0 w-full h-[90%] bg-primary/20"></div>
+                <Image src="/images/dr-samuel-kim.png" alt="Dr. Samuel Kim" fill className="object-cover" />
            </div>
         </div>
 
@@ -112,9 +119,9 @@ export function Hero() {
 
         {/* Right Visuals - Desktop */}
         <div className="hidden lg:flex col-span-3 flex-col items-end justify-center gap-4 relative h-full">
-            <DoctorCard name="Dr. Samuel Kim" role="Cardiology" />
-            <DoctorCard name="Dr. Ema Thomson" role="Dermatologist" className="-translate-x-4" />
-            <DoctorCard name="Dr. Emily Davis" role="Endocrinologist" className="-translate-x-8" />
+            <DoctorCard name="Dr. Samuel Kim" role="Cardiology" image="/images/dr-samuel-kim.png" />
+            <DoctorCard name="Dr. Ema Thomson" role="Dermatologist" className="-translate-x-4" image="/images/dr-ema-thomson.png" />
+            <DoctorCard name="Dr. Emily Davis" role="Endocrinologist" className="-translate-x-8" image="/images/dr-emily-davis.png" />
         </div>
       </div>
     </section>

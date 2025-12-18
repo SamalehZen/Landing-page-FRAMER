@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -35,10 +36,23 @@ export function DoctorsTeam() {
                     >
                         <Card className={`h-full p-4 flex flex-col items-center text-center group ${isCenter ? 'border-primary shadow-xl ring-2 ring-primary/5' : ''}`}>
                             <div className={`w-full aspect-[4/5] rounded-2xl ${doc.imageColor} mb-6 relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-300`}>
-                                {/* Placeholder Doctor Image */}
-                                <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/20 to-transparent" />
+                                {/* Doctor Image */}
+                                {doc.image ? (
+                                    <div className="absolute bottom-0 w-full h-[90%]">
+                                         <Image 
+                                            src={doc.image} 
+                                            alt={doc.name} 
+                                            fill 
+                                            className="object-cover object-top" 
+                                            sizes="(max-width: 768px) 100vw, 300px"
+                                         />
+                                    </div>
+                                ) : (
+                                    <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/20 to-transparent" />
+                                )}
+                                
                                 {isCenter && (
-                                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-bold text-primary flex items-center gap-1 shadow-sm">
+                                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-bold text-primary flex items-center gap-1 shadow-sm z-10">
                                          <CheckCircle2 size={12} /> Top Rated
                                      </div>
                                 )}

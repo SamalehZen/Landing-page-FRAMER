@@ -10,10 +10,10 @@ export const services = [
 ];
 
 export const doctors = [
-  { id: 1, name: "Dr. Emily Davis", role: "Endocrinologist", consults: "1200+", imageColor: "bg-pink-100" },
-  { id: 2, name: "Dr. Alex Chen", role: "Pediatrician", consults: "850+", imageColor: "bg-blue-100" },
-  { id: 3, name: "Dr. Sarah Johnson", role: "Cardiologist", consults: "2000+", imageColor: "bg-green-100" }, 
-  { id: 4, name: "Dr. Michael Lee", role: "Neurologist", consults: "1500+", imageColor: "bg-purple-100" },
+  { id: 1, name: "Dr. Emily Davis", role: "Endocrinologist", consults: "1200+", imageColor: "bg-pink-100", image: "/images/dr-emily-davis.png" },
+  { id: 2, name: "Dr. Alex Chen", role: "Pediatrician", consults: "850+", imageColor: "bg-blue-100", image: "/images/dr-samuel-kim.png" },
+  { id: 3, name: "Dr. Sarah Johnson", role: "Cardiologist", consults: "2000+", imageColor: "bg-green-100", image: "/images/dr-ema-thomson.png" }, 
+  { id: 4, name: "Dr. Michael Lee", role: "Neurologist", consults: "1500+", imageColor: "bg-purple-100", image: "/images/dr-samuel-kim.png" },
 ];
 
 export const testimonials = [
